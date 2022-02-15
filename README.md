@@ -8,6 +8,10 @@ This version is based on:  https://github.com/zabbix/zabbix-docker/tree/5.4/Dock
 docker build -t zabbix-proxy-sqlite3-py3:alpine-5.4-latest --build-arg VCS_REF="5.4.10" --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` -f Dockerfile .
 
 docker image ls
+'''
+REPOSITORY                                                                          TAG                 IMAGE ID       CREATED        SIZE
+zabbix-proxy-sqlite3-py3                                                            alpine-5.4-latest   ************   23 hours ago   134MB
+'''
 
 ### Tasks for Registry upload:
 export registry_address=private-repository-name
@@ -24,3 +28,4 @@ docker tag zabbix-proxy-sqlite3-py3:alpine-5.4-latest ${registry_address}:${regi
 docker push ${registry_address}:${registry_port}/zabbix-proxy-sqlite3-py3:alpine-5.4-latest
 
 ### Kubernetes config:
+kubectl -n YOUR-NAMESPACE apply -f zabbix-proxy-sqlite3-StatefulSet.yaml
